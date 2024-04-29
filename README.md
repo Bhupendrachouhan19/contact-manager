@@ -54,3 +54,14 @@ app.listen(port, ()=> {
 })
 ```
 
+6. Set up the environmental variables inside the .env file:
+    - Install the donenv package using command:  npm install dotenv
+    - As we have installed dotenv, this will allow us to fetch the value of the port from the .env file, with the help of a module name 'process' (It's a core module of node.js).
+
+
+```
+// .env
+
+PORT=5001
+```
+
