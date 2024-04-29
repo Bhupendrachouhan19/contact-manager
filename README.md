@@ -34,3 +34,23 @@
 
 4. Install Nodemon package as a Dev-dependency(It restarts the server whenever we make any changes to our application) using command: ```npm install -D nodemon```
 
+5. Create an Express Server:
+
+```
+// server.js
+
+const express = require("express");
+
+const app = express();
+
+const port = 5000;
+
+app.get('/', (req, res)=>{
+    res.send('Hello World!!!');
+})
+
+app.listen(port, ()=> {
+    console.log(`Server is running on port ${port}`);
+})
+```
+
