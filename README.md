@@ -65,3 +65,4 @@ app.listen(port, ()=> {
 PORT=5001
 ```
 
+7. Serperate the API routes on NodeJS and Express
