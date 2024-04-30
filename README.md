@@ -66,3 +66,4 @@ PORT=5001
 ```
 
 7. Serperate the API routes on NodeJS and Express
+8. Setting up the Controller which contains the logic all to our CRUD request connection to our database.

@@ -10,14 +10,9 @@ const {
   deleteContact,
 } = require("../controllers/contactController");
 
-router.get("/", getContacts);
 
-router.post("/", createContact);
-
-router.get("/:id", getContact);
-
-router.put("/:id", updateContact);
-
-router.delete("/:id", deleteContact);
+// Handling Multiple HTTP Methods per Route:
+router.route("/").get(getContacts).post(createContact);
+router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
 
 module.exports = router;
