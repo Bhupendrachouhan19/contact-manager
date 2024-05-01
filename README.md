@@ -1,3 +1,23 @@
+## Basic Backend Folder Structure:
+- .env
+- package.json
+- package-lock.json
+- extras: (Readme.md, .git, lint, prettier, etc)
+
+/src
+  - index.js (db connects)
+  - App.js (config, cookie, url_encode)
+  - constants.js (enums, db_name)
+
+/db (contains db_calls)
+/models (contains db_schema_structure)
+/controllers (contains functions)
+/routes (contains url_paths)
+/middlewares
+/utils (contains code/functions which can be used in many places throughout the project)
+/more (depends)
+
+
 ## Step to setup backend server using ExpressJS and NodeJS:
 1. Initialise package.json using command : ```npm init```
 
@@ -67,3 +87,11 @@ PORT=5001
 
 7. Serperate the API routes on NodeJS and Express
 8. Setting up the Controller which contains the logic all to our CRUD request connection to our database.
+
+
+---
+
+## What are Middlewares in the backend?
+- It is those methods/functions/operations that are called BETWEEN processing the Request and sending the Response in your application method.
+- Express provides you with middleware to deal with the (incoming) data (object) in the body of the request.
+- Every middleware(declared as ```app.use()```) gets executed sequentially, top-to-bottom as mentioned in the ```server.js``` file.
