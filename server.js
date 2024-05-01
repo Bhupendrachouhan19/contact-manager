@@ -12,6 +12,8 @@ const app = express();
 
 const port = process.env.PORT || 5000;
 
+app.use(express.json())
+
 app.use("/api/contacts/", contactRoutes); // Here app.use() works as a middleware routing requests.
 
 app.get('/', (req, res) => {
