@@ -12,7 +12,7 @@ const app = express();
 
 const port = process.env.PORT || 5000;
 
-app.use(express.json())
+app.use(express.json()) // Built-in Middleware to parse the POST Request Body.
 
 app.use("/api/contacts/", contactRoutes); // Here app.use() works as a middleware routing requests.
 
