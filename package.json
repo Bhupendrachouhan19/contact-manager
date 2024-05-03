@@ -23,7 +23,8 @@
   "homepage": "https://github.com/Bhupendrachouhan19/contact-manager#readme",
   "dependencies": {
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
