@@ -8,6 +8,9 @@ const dotenv = require("dotenv").config();
 // API Routes:
 const contactRoutes = require("./routes/contactRoutes");
 const errorHandler = require("./middleware/errorHandler");
+const connectDB = require('./config/dbConnections')
+
+connectDB();
 
 const app = express();
 

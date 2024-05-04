@@ -95,3 +95,8 @@ PORT=5001
 - It is those methods/functions/operations that are called BETWEEN processing the Request and sending the Response in your application method.
 - Express provides you with middleware to deal with the (incoming) data (object) in the body of the request.
 - Every middleware(declared as ```app.use()```) gets executed sequentially, top-to-bottom as mentioned in the ```server.js``` file.
+
+### What are a Schema Diagrams?
+- Database schema is the logical:
+  - View of the entire database.
+  - These schema are obviously going to represent
