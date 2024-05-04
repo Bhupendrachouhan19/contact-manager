@@ -1,10 +1,12 @@
 const asyncHandler = require('express-async-handler');
+const Contact = require('../models/contactModel');
 
 // @desc Get all contacts
 // @route GET /api/contacts
 // @access public
 const getContacts = asyncHandler (async (req, res) => {
-  res.status(200).json({ message: "Get all Contacts" });
+  const contacts = await Contact.find(); // In Mongoose, the .find() method is used to query documents from a MongoDB collection based on specified conditions. It returns an array of documents that match the query criteria.
+  res.status(200).json(contacts);
 });
 
 // @desc Create New contact
@@ -14,11 +16,18 @@ const createContact = asyncHandler (async (req, res) => {
   console.log("The reques body is: ", req.body);
   const { name, email, phone } = req.body;
 
+  // if any of the field is empty, then it will throw an error.
   if (!name || !email || !phone) {
     res.status(400);
     throw new Error("Some fields are empty!!");
   }
-  res.status(201).json({ message: "Create Contact" });
+
+  const contact = await Contact.create({
+    name,
+    email,
+    phone
+  })
+  res.status(201).json(contact);
 });
 
 // @desc Get the contact
