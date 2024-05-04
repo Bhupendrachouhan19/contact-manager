@@ -100,3 +100,11 @@ PORT=5001
 - Database schema is the logical:
   - View of the entire database.
   - These schema are obviously going to represent
+  - In Mongoose, a single model can have multiple schemas, but typically, a model is associated with a single schema. This allows for consistency and clarity in defining the structure of documents stored in a MongoDB collection. However, in more complex scenarios, you might have a need to define multiple schemas for a single model, such as when dealing with inheritance or dynamic schemas.
+  - A single database in MongoDB can have an unlimited number of models, each representing a different collection.
+
+
+
+
+
+
