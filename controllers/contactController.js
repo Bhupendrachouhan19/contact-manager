@@ -33,15 +33,38 @@ const createContact = asyncHandler (async (req, res) => {
 // @desc Get the contact
 // @route GET /api/contacts/:id
 // @access public
-const getContact = asyncHandler (async (req, res) => {
-  res.status(200).json({ message: `Get the Contact for ${req.params.id}` });
+const getContact = asyncHandler(async (req, res) => {
+  const contact = await Contact.findById(req.params.id);
+  if (!contact) {
+    res.status(404);
+    throw new Error("Contact not found. Please enter the correct ContactID.");
+  }
+  res.status(200).json(contact);
 });
 
 // @desc Update the contact
 // @route PUT /api/contacts/:id
 // @access public
-const updateContact = asyncHandler (async (req, res) => {
-  res.status(200).json({ message: `Update Contact for ${req.params.id}` });
+const updateContact = asyncHandler(async (req, res) => {
+  const contact = await Contact.findById(req.params.id);
+  if (!contact) {
+    res.status(404);
+    throw new Error("Contact not found. Please enter the correct ContactID.");
+  }
+
+  const updatedContact = await Contact.findByIdAndUpdate(
+    req.params.id,
+    {
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+    },
+    {
+      new: true,
+    }
+  );
+
+  res.status(200).json(updateContact);
 });
 
 // @desc Delete the contact
