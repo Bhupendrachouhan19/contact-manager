@@ -7,6 +7,7 @@ const dotenv = require("dotenv").config();
 
 // API Routes:
 const contactRoutes = require("./routes/contactRoutes");
+const userRoutes = require("./routes/userRoutes")
 const errorHandler = require("./middleware/errorHandler");
 const connectDB = require('./config/dbConnections')
 
@@ -19,6 +20,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json()); // Built-in Middleware to parse the POST Request Body.
 
 app.use("/api/contacts/", contactRoutes); // Here app.use() works as a middleware routing requests.
+app.use("/api/users/", userRoutes); // Here app.use() works as a middleware routing requests.
 
 app.use(errorHandler);
 
