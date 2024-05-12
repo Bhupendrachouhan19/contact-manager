@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!!!');
 })
 
-app.listen(port, ()=> {
+app.listen(port, () => {
   // This will listen on the specified port.
   console.log(`Server is running on port ${port}`);
-})
+});

@@ -13,13 +13,13 @@ const getContacts = asyncHandler (async (req, res) => {
 // @route POST /api/contacts
 // @access public
 const createContact = asyncHandler (async (req, res) => {
-  console.log("The reques body is: ", req.body);
+  console.log("The request body is: ", req.body);
   const { name, email, phone } = req.body;
 
   // if any of the field is empty, then it will throw an error.
   if (!name || !email || !phone) {
     res.status(400);
-    throw new Error("Some fields are empty!!");
+    throw new Error("Some Contact fields are empty!!");
   }
 
   const contact = await Contact.create({

@@ -6,6 +6,6 @@ router.route("/register").post(registerUser);
 
 router.route("/login").post(loginUser);
 
-router.route("/current").get(currentUser);
+router.route("/current/").get(currentUser);
 
 module.exports = router;
