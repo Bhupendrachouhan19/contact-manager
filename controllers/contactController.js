@@ -1,6 +1,8 @@
 const asyncHandler = require('express-async-handler');
 const Contact = require('../models/contactModel');
 
+// Controller Functions or Route Handlers for handling various API requests:
+
 // @desc Get all contacts
 // @route GET /api/contacts
 // @access public
