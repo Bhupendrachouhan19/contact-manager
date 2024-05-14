@@ -11,6 +11,8 @@ const {
 } = require("../controllers/contactController");
 
 
+router.use(validateToken); // This is one of the way to apply a middleware in order validate the JWT token on all the routes(this technique is mostly use when we have all the routes as protected routes.)
+
 // Handling Multiple HTTP Methods per Route:
 router.route("/").get(getContacts).post(createContact);
 router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
