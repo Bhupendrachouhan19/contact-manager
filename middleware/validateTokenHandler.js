@@ -22,7 +22,7 @@ const validateToken = asyncHandler(async (req, res, next) => {
 
       req.user = decoded.user; // appending the JWT property (name 'user') from the payload of JWT data, to the 'req' object represents the HTTP request that is received by the server from the client.
 
-        console.log(req);
+        // console.log(req);
 
       next(); // Its a middleware which rather than returning Response back to the client, passes the control to the next middleware function in the middleware stack.
     });

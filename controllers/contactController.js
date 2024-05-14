@@ -7,7 +7,7 @@ const Contact = require('../models/contactModel');
 // @route GET /api/contacts
 // @access private
 const getContacts = asyncHandler (async (req, res) => {
-  const contacts = await Contact.find(); // In Mongoose, the .find() method is used to query documents from a MongoDB collection based on specified conditions. It returns an array of documents that match the query criteria.
+  const contacts = await Contact.find({user_id: req.user.id}); // In Mongoose, the .find() method is used to query documents from a MongoDB collection based on specified conditions. It returns an array of documents that match the query criteria.
   res.status(200).json(contacts);
 });
 
@@ -27,7 +27,8 @@ const createContact = asyncHandler (async (req, res) => {
   const contact = await Contact.create({
     name,
     email,
-    phone
+    phone,
+    user_id: req.user.id
   })
   res.status(201).json(contact);
 });

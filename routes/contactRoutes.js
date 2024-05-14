@@ -10,6 +10,7 @@ const {
   deleteContact,
 } = require("../controllers/contactController");
 
+const validateToken = require("../middleware/validateTokenHandler");
 
 router.use(validateToken); // This is one of the way to apply a middleware in order validate the JWT token on all the routes(this technique is mostly use when we have all the routes as protected routes.)
 
