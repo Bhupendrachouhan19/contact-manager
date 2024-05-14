@@ -19,10 +19,11 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json()); // Built-in Middleware to parse the POST Request Body.
 
-app.use("/api/contacts/", contactRoutes); // Here app.use() works as a middleware routing requests.
-app.use("/api/users/", userRoutes); // Here app.use() works as a middleware routing requests.
+app.use("/api/contacts/", contactRoutes); // Here contactRoutes is a Router-middleware binded to our express-app using the ".use()" method for routing requests.
 
-app.use(errorHandler);
+app.use("/api/users/", userRoutes); // Here userRoutes is a Router-middleware binded to our express-app using the ".use()" method for routing requests.
+
+app.use(errorHandler); // Here errorHandler is the middleware, binded to our express-app using the ".use()" method for handling errors during API request-response cycle.
 
 app.get('/', (req, res) => {
     res.send('Hello World!!!');

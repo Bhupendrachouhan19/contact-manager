@@ -9,6 +9,8 @@ const jwt = require("jsonwebtoken");
 // @route POST /api/users/register
 // @access public
 const registerUser = asyncHandler(async (req, res) => {
+  console.log("User Registered")
+
   const { username, email, password } = req.body;
   console.log("The Register User request body is: ", username, email, password);
 
@@ -49,6 +51,8 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route POST /api/users/login
 // @access public
 const loginUser = asyncHandler(async (req, res) => {
+  console.log("User LoggedIn")
+
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -60,16 +64,23 @@ const loginUser = asyncHandler(async (req, res) => {
 
   // compare the plain-text-password with the hashed-password:
   if (user && (await bcrypt.compare(password, user.password))) {
+    /*
+    Every jwt token has 3 parts: 1. The Header, 2. The Payload, 3. The Secret Key. 
+    
+    The Header of the JWT token typically remains the same regardless of when the token is issued or regenerated. The header of a JWT token contains metadata about the token itself, such as the algorithm used to sign the token and the token type. This information is static and does not change between different JWT tokens issued by the same system.
+    
+    So below we are creating an accessToken by passing the Payload data and the Secret Key with the expiration-time of the accessToken.
+    */
     const accessToken = jwt.sign(
       {
         user: {
           username: user.username,
           email: user.email,
           id: user._id,
-        }
+        },
       },
       process.env.ACCESS_TOKEN_SECERET,
-      {expiresIn: "1m"}
+      { expiresIn: "15m" }
     );
     res.status(200).json({ accessToken });
   } else {
@@ -83,12 +94,17 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route GET api/users/current
 // @access private
 const currentUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
-  if (!user) {
-    user.status(404);
-    throw new Error ("User not found. Please enter the correct UserId.")
+  console.log("Current User");
+
+  // const user = await User.findById(req.user.id); // This method retrieves the entire user document from the database, including all fields stored in the document (e.g., _id, username, email, password, createdAt, updatedAt, __v)
+
+  // req.user : Here Request object have the 'user' property because we have appended the decoded payload data (i.e. 'user') as a property to the Request object after the successfull verification of JWT token. (Refer validateTokenHandler.js file)
+
+  if (!req.user) {
+    res.status(404);
+    throw new Error("User not found. Please enter the correct UserId.");
   }
-  res.status(201).json(user);
+  res.status(201).json(req.user);
 });
 
 module.exports = { registerUser, loginUser, currentUser };
