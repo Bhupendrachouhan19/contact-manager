@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const Contact = require('../models/contactModel');
+const { response } = require('express');
 
 // Controller Functions or Route Handlers for handling various API requests:
 
@@ -55,6 +56,12 @@ const updateContact = asyncHandler(async (req, res) => {
     throw new Error("Contact not found. Please enter the correct ContactID.");
   }
 
+  // Verifying whether the contact that the logged-in user is trying to access was created by them only.
+  if (contact.user_id.toString() !== req.user.id) {
+    res.status(403);
+    throw new Error("User don't have permission to update other user contacts.");
+  }
+
   const updatedContact = await Contact.findByIdAndUpdate(
     req.params.id,
     {
@@ -78,6 +85,12 @@ const deleteContact = asyncHandler(async (req, res) => {
   if (!contact) {
     res.status(404);
     throw new Error("Contact not found. Please enter the correct ContactID.");
+  }
+
+  // Verifying whether the contact that the logged-in user is trying to access was created by them only.
+  if (contact.user_id.toString() !== req.user.id) {
+    res.status(403);
+    throw new Error("User don't have permission to delete other user contacts.")
   }
 
   await Contact.findByIdAndDelete(req.params.id);
